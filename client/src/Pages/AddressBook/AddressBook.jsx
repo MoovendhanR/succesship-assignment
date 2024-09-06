@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./AddressBook.css"
+import AddressList from '../../Components/AddressList';
+import AddressForm from '../../Components/AddressForm';
 
 const AddressBook = () => {
   const [addresses, setAddresses] = useState([]);
@@ -48,52 +51,22 @@ const AddressBook = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Address Book</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Phone"
-          value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={form.address}
-          onChange={(e) => setForm({ ...form, address: e.target.value })}
-          required
-        />
-        <button type="submit">{editingId ? 'Update' : 'Add'}</button>
-      </form>
-      <ul>
-        {addresses?.map((address) => (
-          <li key={address._id}>
-            <p>{address.name}</p>
-            <p>{address.email}</p>
-            <p>{address.phone}</p>
-            <p>{address.address}</p>
-            <button onClick={() => handleEdit(address)}>Edit</button>
-            <button onClick={() => handleDelete(address.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div>
+    <h1 className="address-book-title">Address Book</h1>
+    <AddressForm
+      form={form}
+      setForm={setForm}
+      handleSubmit={handleSubmit}
+      editingId={editingId}
+    />
+    <center>
+    <AddressList
+      addresses={addresses}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+    />
+    </center>
+  </div>
   );
 };
 
