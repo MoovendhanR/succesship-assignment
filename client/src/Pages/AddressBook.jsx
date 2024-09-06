@@ -19,7 +19,7 @@ const AddressBook = () => {
     if (editingId) {
       axios.put(`http://localhost:8080/addresses/${editingId}`, form).then((response) => {
         setAddresses(
-          addresses.map((addr) => (addr._id === editingId ? response.data : addr))
+          addresses.map((addr) => (addr.id === editingId ? response.data : addr))
         );
         setEditingId(null);
         setForm({ name: '', email: '', phone: '', address: '' });
