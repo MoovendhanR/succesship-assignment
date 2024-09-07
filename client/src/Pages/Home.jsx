@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
     <br /><br /><br /><br />
-    <h1>Welcome, Please go for addresses!</h1>
+    <h1>Welcome, Please go for addresses! or Products!</h1>
     </>
   )
 }
