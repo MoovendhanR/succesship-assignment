@@ -11,7 +11,7 @@ const AddressBook = () => {
 
   // Fetch addresses
   useEffect(() => {
-    axios.get('http://localhost:8080/addresses').then((response) => {
+    axios.get('https://profile-fyi-backend-db.onrender.com/addresses').then((response) => {
       setAddresses(response.data);
     });
   }, []);
@@ -20,7 +20,7 @@ const AddressBook = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingId) {
-      axios.put(`http://localhost:8080/addresses/${editingId}`, form).then((response) => {
+      axios.put(`https://profile-fyi-backend-db.onrender.com/addresses/${editingId}`, form).then((response) => {
         setAddresses(
           addresses.map((addr) => (addr.id === editingId ? response.data : addr))
         );
@@ -28,7 +28,7 @@ const AddressBook = () => {
         setForm({ name: '', email: '', phone: '', address: '' });
       });
     } else {
-      axios.post('http://localhost:8080/addresses', form).then((response) => {
+      axios.post('https://profile-fyi-backend-db.onrender.com/addresses', form).then((response) => {
         setAddresses([...addresses, response.data]);
         setForm({ name: '', email: '', phone: '', address: '' });
       });
@@ -37,7 +37,7 @@ const AddressBook = () => {
 
   // Delete Address
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8080/addresses/${id}`).then(() => {
+    axios.delete(`https://profile-fyi-backend-db.onrender.com/addresses/${id}`).then(() => {
       setAddresses(addresses.filter((addr) => addr.id !== id));
     });
   };
